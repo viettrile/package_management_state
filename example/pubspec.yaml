@@ -1,0 +1,20 @@
+name: example
+description: Example app for manage_state_package
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  manage_state_package:
+    path: ../  # Trỏ đến thư mục gốc của package
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
