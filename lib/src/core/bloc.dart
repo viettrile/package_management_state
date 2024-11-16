@@ -6,7 +6,7 @@ abstract class Bloc<T> {
   late final StreamController<BlocState<T>> _controller;
   BlocState<T> _currentState;
   final List<Function> _listeners = [];
-  
+
   Bloc(T initialData) : _currentState = BlocState<T>(data: initialData) {
     _controller = StreamController<BlocState<T>>.broadcast();
     _init();
@@ -17,7 +17,7 @@ abstract class Bloc<T> {
 
   // Getter cho state hiện tại
   BlocState<T> get state => _currentState;
-  
+
   // Stream để lắng nghe thay đổi
   Stream<BlocState<T>> get stream => _controller.stream;
 
@@ -53,7 +53,7 @@ abstract class Bloc<T> {
     _updateState(BlocState<T>(data: initialData));
   }
 
-  // Thêm listener
+  // Thêm listener để lắng nghe thay đổi
   void addListener(Function(BlocState<T>) listener) {
     _listeners.add(listener);
   }
@@ -81,7 +81,8 @@ abstract class Bloc<T> {
       _controller.close();
     }
     _listeners.clear();
-    _currentState = BlocState<T>(data: _currentState.data); // Giữ nguyên data hiện tại
+    _currentState =
+        BlocState<T>(data: _currentState.data); // Giữ nguyên data hiện tại
   }
 
   // Thêm phương thức
@@ -90,7 +91,7 @@ abstract class Bloc<T> {
       emit(state);
     }
   }
-  
+
   // Thêm phương thức batch update
   void batchEmit(T Function(T currentData) updates) {
     final updatedData = updates(state.data);
